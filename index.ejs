@@ -1,0 +1,88 @@
+<style>
+    html, body {
+        height: 100%;
+        margin: 0;
+        align : center;
+    }
+    #map {
+        width: 75%;
+        height: 100%;
+        float: left;
+    }
+    #menu {
+        width: 25%;
+        height: 100%;
+        background-image: url('https://user.ceng.metu.edu.tr/~e1942614/files/back.jpg');
+        float: left;
+        box-sizing: border-box;
+        border-right-width: 1%;
+        border-right-style: solid;
+        border-right-color: white;
+    }
+    #form {
+        margin: 10;
+    }
+    #input {
+        width: 75%;
+        background-color: rgb(125, 225, 255);
+        font-size: 18;
+    }
+    #submit {
+        margin: 5;
+        width: 20%;
+        background-color: rgb(235, 245, 255);
+        font-size: 18;
+    }
+    p {
+        font-size: 18;
+        font-weight: bold;
+    }
+</style>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ==" crossorigin=""/>
+<script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js" integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew==" crossorigin=""></script>
+
+<html>
+    <body>
+        <div id = 'menu'>
+            <form id="form" action="/parks" method="post">
+                <select id = "input" name = "input">
+                    <option > <%- chosenD%> </option>
+                    <% for ( let i = 0; i < district.length; i++ ) { %>
+                        <option value= "<%- district[i]%>" > <%- district[i]%> </option>
+                    <% } %>
+                </select>
+                <input id = "submit" type="submit">
+            </form>
+            <form id="form" action="/capacity" method="post">
+                <select id = "input" name = "input">
+                    <option  value= <%- chosenP[1] %> > <%- chosenP[0]%> </option>
+                    <% for ( let i = 0; i < park.length; i++ ) { %>
+                        <option value= <%- i %> > <%- park[i][0]%> </option>
+                    <% } %>
+                </select>
+                <input id = "submit" type="submit">
+                <div>
+                    <p>
+                        Total capacity: <%- total%>
+                    </p>
+                    <p>
+                        Available: <%- empty%>
+                    </p>
+                </div>
+            </form>
+        </div>
+        <div id='map'>
+            <script>
+                var focus = <%- lat%> > 0;
+            	var map = L.map('map').setView( focus ? [<%- lat%>, <%- lon%>] : [41.04, 29] , focus ? 15 : 12);
+            	L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            		attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            	}).addTo(map);
+            	var LeafIcon = L.Icon.extend({options: {iconSize: [60, 60]}});
+            	var icon = new LeafIcon({iconUrl: 'https://user.ceng.metu.edu.tr/~e1942614/files/pin2.png'});
+            	L.marker([<%- lat%>, <%- lon%>], {icon: icon}).bindPopup("<%- chosenP[0] %>").addTo(map);
+            </script>
+        </div>
+    </body>
+</html>
