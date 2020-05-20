@@ -1,5 +1,7 @@
 Application url: https://bilals-park-space.herokuapp.com
 
+*This application uses and API supplied by İBB (https://api.ibb.gov.tr/ispark/Park) and shows available park spaces of İspark in İstanbul
+
 *I used NodeJS for back-end (handling fetch and adjusting API results)
 and Embedded JavaScript for front-end side (rendering GUI with HTML/Javascript).
 
