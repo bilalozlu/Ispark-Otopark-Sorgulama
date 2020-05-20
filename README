@@ -1,0 +1,11 @@
+Application url: https://bilals-park-space.herokuapp.com
+
+*I used NodeJS for back-end (handling fetch and adjusting API results)
+and Embedded JavaScript for front-end side (rendering GUI with HTML/Javascript).
+
+*Only choosing district and park name is enough to use app.
+
+*Since I did not upload node_modules, you need to install them
+by `npm install` command in order to run application in your computer.
+
+Bilal Özlü - 1942614
