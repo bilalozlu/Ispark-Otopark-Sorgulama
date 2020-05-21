@@ -2,6 +2,8 @@ Application url: https://bilals-park-space.herokuapp.com
 
 *API is supplied by İBB (https://api.ibb.gov.tr/ispark/Park)
 
+*I used open-source interactive map (LeafLet)
+
 *I used NodeJS for back-end (handling fetch and adjusting API results)
 and Embedded JavaScript for front-end side (rendering GUI with HTML/Javascript).
 
