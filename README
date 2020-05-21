@@ -2,10 +2,9 @@ Application url: https://bilals-park-space.herokuapp.com
 
 *API is supplied by İBB (https://api.ibb.gov.tr/ispark/Park)
 
-*I used open-source interactive map (LeafLet)
-
-*I used NodeJS for back-end (handling fetch and adjusting API results)
-and Embedded JavaScript for front-end side (rendering GUI with HTML/Javascript).
+*I used NodeJS for back-end (handling fetch and adjusting API results),
+Embedded JavaScript for front-end side (rendering GUI with HTML/Javascript),
+and LeafLet to implement map (https://leafletjs.com/)
 
 *Since I did not upload node_modules, you need to install them
 by `npm install` command in order to run application in your computer.
