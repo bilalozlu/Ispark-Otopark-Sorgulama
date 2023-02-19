@@ -12,7 +12,6 @@
     #menu {
         width: 25%;
         height: 100%;
-        background-image: url('https://user.ceng.metu.edu.tr/~e1942614/files/back.jpg');
         float: left;
         box-sizing: border-box;
         border-right-width: 1%;
@@ -52,7 +51,7 @@
                 <select id = "input" name = "input">
                     <option > <%- chosenD%> </option>
                     <% for ( let i = 0; i < district.length; i++ ) { %>
-                        <option value= "<%- district[i]%>" > <%- district[i]%> </option>
+                        <option value= <%- district[i]%> > <%- district[i]%> </option>
                     <% } %>
                 </select>
                 <input id = "submit" type="submit">
@@ -83,7 +82,7 @@
             		attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             	}).addTo(map);
             	var LeafIcon = L.Icon.extend({options: {iconSize: [60, 60]}});
-            	var icon = new LeafIcon({iconUrl: 'https://user.ceng.metu.edu.tr/~e1942614/files/pin2.png'});
+            	var icon = new LeafIcon({iconUrl: '/public/pin.png'});
             	L.marker([<%- lat%>, <%- lon%>], {icon: icon}).bindPopup("<%- chosenP[0] %>").addTo(map);
             </script>
         </div>

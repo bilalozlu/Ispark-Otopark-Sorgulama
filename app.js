@@ -2,8 +2,9 @@ var express = require('express');
 var app = express();
 var ejs = require('ejs');
 var bodyParser = require('body-parser');
+const port = process.env.PORT || 8080;
 var cors = require('cors');
-
+app.use('/public',express.static(__dirname +"/public"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.set('views', '');
@@ -38,7 +39,7 @@ app.get('/', async (req,res) => {
     chosenDistrict = "Choose district";
     chosenPark = ["Choose park",-1];
     for(let i= 0; i < length; i++) {
-        districtList.push(body[i].Ilce);
+        districtList.push(body[i].district);
     }
     districtList = districtList.filter((x, i, a) => a.indexOf(x) == i);
     res.render('',{
@@ -62,8 +63,8 @@ app.post('/parks',async (req,res) => {
         chosenDistrict = input;
         chosenPark = ["Choose park",-1];
         for(let i= 0; i < length; i++) {
-            if (body[i].Ilce == input)
-                parkList.push([body[i].ParkAdi, body[i].ParkID]);
+            if (body[i].district == input)
+                parkList.push([body[i].parkName, body[i].parkID]);
         }
         res.render('',{
             district: districtList,
@@ -91,17 +92,19 @@ app.post('/capacity',async (req,res)=> {
             chosenD: chosenDistrict,
             park: parkList,
             chosenP: chosenPark,
-            empty: body.BosKapasite,
-            total: body.Kapasitesi,
-            lat: body.Latitude,
-            lon: body.Longitude
+            empty: body[0].emptyCapacity,
+            total: body[0].capacity,
+            lat: parseFloat(body[0].lat),
+            lon: parseFloat(body[0].lng)
         });
+
+
     }
     else {
         console.log("Choose park")
     }
 })
 
-app.listen(process.env.PORT, () => {
+app.listen(port, () => {
     console.log('listening');
 });
